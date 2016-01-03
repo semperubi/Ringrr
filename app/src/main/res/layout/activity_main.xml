@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    tools:context="android.semperubi.ringrr.MainActivity">
+
+    <TextView
+        android:id="@+id/lbMainHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="5dp"
+        android:textSize="24sp"
+        android:textColor="@color/Black"
+        android:textStyle="bold"
+        android:text="Ringrr Console" />
+
+    <TableLayout
+        android:id="@+id/tlPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lbMainHeader" >
+
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/lbPwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lbSystemSetup"
+                android:layout_centerInParent="true"
+                android:text="@string/password"
+                android:textSize="20sp"
+                android:textColor="@color/Black"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:tag="password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lbSystemSetup"
+                android:layout_toRightOf="@+id/lbPwd"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textSize="15sp"
+                android:textColor="@color/Black" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/lbServices"
+        android:layout_below="@+id/tlPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textSize="20sp"
+        android:textColor="@color/Black"
+        android:textStyle="bold"
+        android:text="Service Functions" />
+
+
+    <TableLayout
+        android:id="@+id/tlServiceButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lbServices" >
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:padding="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start"
+                android:textSize="10sp"
+                android:textColor="@color/Black"
+                android:textStyle="bold"
+                android:onClick="startService"/>
+
+            <Button
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stop"
+                android:textSize="10sp"
+                android:textColor="@color/Black"
+                android:textStyle="bold"
+                android:onClick="stopService" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pause"
+                android:textSize="10sp"
+                android:textColor="@color/Black"
+                android:textStyle="bold"
+                android:onClick="pauseService" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Continue"
+                android:textSize="10sp"
+                android:textColor="@color/Black"
+                android:textStyle="bold"
+                android:onClick="continueService" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reload"
+                android:textSize="10sp"
+                android:textColor="@color/Black"
+                android:textStyle="bold"
+                android:onClick="reloadService" />
+
+            <Button
+                android:id="@+id/btSetup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textSize="10sp"
+                android:textColor="@color/Black"
+                android:textStyle="bold"
+                android:text="Setup"
+                android:onClick="setup" />
+
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test Functions"
+        android:textColor="@color/Black"
+        android:textStyle="bold"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:onClick="testFunctions"/>
+
+
+</RelativeLayout>

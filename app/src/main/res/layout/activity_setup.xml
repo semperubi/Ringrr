@@ -1,0 +1,410 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    tools:context="android.semperubi.ringrr.setupactivity">
+
+    <TextView
+        android:id="@+id/lbSystemSetup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/system_setup"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/Black" />
+
+    <TableLayout
+        android:id="@+id/tlInfoTypes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:layout_below="@+id/lbSystemSetup" >
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/lbInfoType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/infotype"
+                android:textStyle="bold"
+                android:textColor="@color/Black"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/lbUse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/use"
+                android:textColor="@color/Black"
+                android:textStyle="bold"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/lbPollInterval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="5dp"
+                android:text="@string/poll"
+                android:textColor="@color/Black"
+                android:textStyle="bold"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="5dp"
+                android:text="@string/time"
+                android:textColor="@color/Black"
+                android:textStyle="bold"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="@string/accuracy"
+                android:textColor="@color/Black"
+                android:textStyle="bold"
+                android:textSize="15sp"/>
+            
+        </TableRow>
+
+        <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/location"
+            android:textSize="15sp"
+            android:textColor="@color/Black" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:id="@+id/checkBoxGPS" />
+
+        <EditText
+            android:id="@+id/etGPSInterval"
+            android:tag="GPSInterval"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:singleLine="true"
+            android:maxWidth="20dp"
+            android:textSize="15sp"
+            android:textColor="@color/Black"
+            android:layout_width="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/minutes"
+                android:textSize="15sp"
+                android:textColor="@color/Black" />
+
+            <EditText
+                android:id="@+id/etGPSDelta"
+                android:tag="GPSDelta"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:singleLine="true"
+                android:maxWidth="25dp"
+                android:textSize="15sp"
+                android:textColor="@color/Black"
+                android:layout_width="25dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/meters"
+                android:textSize="15sp"
+                android:textColor="@color/Black" />
+
+    </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/battery"
+                android:textSize="15sp"
+                android:textColor="@color/Black" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:id="@+id/checkBoxBattery" />
+
+            <EditText
+                android:id="@+id/etBatteryInterval"
+                android:tag="BatteryInterval"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:singleLine="true"
+                android:maxWidth="25dp"
+                android:textSize="15sp"
+                android:textColor="@color/Black"
+                android:layout_width="25dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/minutes"
+                android:textSize="15sp"
+                android:textColor="@color/Black" />
+
+            <EditText
+                android:id="@+id/etBatteryDelta"
+                android:tag="BatteryDelta"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:singleLine="true"
+                android:maxWidth="25dp"
+                android:textSize="15sp"
+                android:textColor="@color/Black"
+                android:layout_width="25dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/percent"
+                android:textSize="15sp"
+                android:textColor="@color/Black" />
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/memory"
+                android:textSize="15sp"
+                android:textColor="@color/Black" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:id="@+id/checkBoxMemory" />
+
+            <EditText
+                android:id="@+id/etMemoryInterval"
+                android:tag="MemoryInterval"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:singleLine="true"
+                android:maxWidth="25dp"
+                android:textSize="15sp"
+                android:textColor="@color/Black"
+                android:layout_width="25dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/minutes"
+                android:textSize="15sp"
+                android:textColor="@color/Black" />
+
+            <EditText
+                android:id="@+id/etMemoryDelta"
+                android:tag="MemoryDelta"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:singleLine="true"
+                android:maxWidth="25dp"
+                android:textSize="15sp"
+                android:textColor="@color/Black"
+                android:layout_width="25dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/percent"
+                android:textSize="15sp"
+                android:textColor="@color/Black" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apps"
+                android:textSize="15sp"
+                android:textColor="@color/Black" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:id="@+id/checkBoxApps" />
+
+            <EditText
+                android:id="@+id/etAppsInterval"
+                android:tag="AppsInterval"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:singleLine="true"
+                android:maxWidth="25dp"
+                android:textSize="15sp"
+                android:textColor="@color/Black"
+                android:layout_width="25dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/minutes"
+                android:textSize="15sp"
+                android:textColor="@color/Black" />
+
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="0dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/network"
+                android:textSize="15sp"
+                android:textColor="@color/Black" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:id="@+id/checkBoxNetwork" />
+
+            <EditText
+                android:id="@+id/etNetworkInterval"
+                android:tag="NetworkInterval"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:singleLine="true"
+                android:maxWidth="25dp"
+                android:textSize="15sp"
+                android:textColor="@color/Black"
+                android:layout_width="25dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/minutes"
+                android:textSize="15sp"
+                android:textColor="@color/Black" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <TableLayout
+        android:id="@+id/tlButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="5dp" >
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+    <Button
+        android:id="@+id/btCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/Red"
+        android:onClick="cancel"
+        android:text="@string/cancel"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/buttonStyleSmall"
+                android:visibility="invisible"/>
+
+            <Button
+                android:id="@+id/btSave"
+                android:background="@color/Green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/save"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:onClick="saveSetupInfo"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/buttonStyleSmall"
+                android:visibility="invisible"/>
+    
+     <Button
+        android:id="@+id/btDone"
+        android:background="@color/Blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="done"
+        android:text="@string/done" 
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+        </TableRow>
+
+    </TableLayout>
+
+</RelativeLayout>
+    
