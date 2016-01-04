@@ -82,7 +82,6 @@
             android:layout_height="wrap_content" >
 
             <Button
-                android:padding="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Start"
@@ -149,9 +148,10 @@
         android:textColor="@color/Black"
         android:textStyle="bold"
         android:id="@+id/button"
-        android:layout_alignParentBottom="true"
+        android:onClick="testFunctions"
+        android:layout_below="@+id/tlServiceButtons"
         android:layout_alignParentStart="true"
-        android:onClick="testFunctions"/>
+        android:layout_marginTop="30dp"/>
 
 
 </RelativeLayout>

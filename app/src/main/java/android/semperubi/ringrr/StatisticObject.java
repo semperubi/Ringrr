@@ -2,7 +2,6 @@ package android.semperubi.ringrr;
 
 import android.content.Context;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 /**
  * Created by Herb on 12/20/2015.
@@ -51,7 +50,7 @@ abstract class StatisticObject {
             changeFlag = checkDelta();
         }
         if (changeFlag && logFlag) {
-                statLogger.addStatLine(statType,getJSON());
+                statLogger.addLogLine(LogMessageType.STATISTIC,statType,getJSON(),true);
         }
         previousInfo = newInfo;
     }
@@ -63,12 +62,10 @@ abstract class StatisticObject {
         try {
             // Here we convert Java Object to JSON
             jsonObject = new JSONObject();
-            jsonObject.put("TYPE",statType.toString());
             setJSONdetails();
             jStr = jsonObject.toString();
-
         }
-        catch(JSONException ex) {
+        catch(Exception ex) {
             Utilities.handleCatch("E",jClass+":toJSON",ex);
         }
 

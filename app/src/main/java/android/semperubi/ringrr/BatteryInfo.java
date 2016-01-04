@@ -91,9 +91,10 @@ public class BatteryInfo extends StatisticObject {
 
     void setJSONdetails() {
        try {
+           jsonObject.put("PERCENT",batteryLevel);
            jsonObject.put("STATUS", batteryState);
            jsonObject.put("CABLE", batteryCable);
-           jsonObject.put("PERCENT",batteryLevel);
+
        }
         catch (Exception e) {
             Utilities.handleCatch("E","BatteryInfo:setJSONdetails",e);

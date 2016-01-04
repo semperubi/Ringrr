@@ -9,8 +9,7 @@ public enum ServiceMessageType {
     PAUSE("PAUSE",2),
     CONTINUE("CONTINUE",3),
     RELOAD("RELOAD",4),
-    HEARTBEAT("HEARTBEAT",5),
-    NONE("NONE",6);
+    NONE("NONE",5);
 
     private String stringValue;
     private int intValue;

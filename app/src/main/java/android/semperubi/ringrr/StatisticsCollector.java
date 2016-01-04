@@ -13,41 +13,47 @@ import java.io.FileReader;
 import java.io.FileWriter;
 
 public class StatisticsCollector {
-    final int MAX_STATUS_COUNT = 50;
+    final int MAX_STATUS_COUNT = 5;
+    final int MAX_SLEEP_COUNT = 5;
+    private final int SLEEPTIME = 10000; //milliseconds
+    private int sleepCount = 0;
     private Context appContext;
     private ActivityManager activityManager;
-    private static final int SLEEPTIME = 60000; //milliseconds
     private RingrrConfigInfo configInfo;
     private LocationInfo locationInfo;
-    private GPSInfo gpsInfo;
     private BatteryInfo batteryInfo;
     private MemoryUsage memoryUsage;
     private NetworkInfo networkInfo;
     private ProcessInfo processInfo;
+    private TransmissionList transmitList;
     private int waitIntervals[];
     private static StatisticsLog statLog;
     private boolean loadConfigFlag = true;
     private boolean pollFlag = true;
     private boolean runFlag = true;
+    private boolean xmitFlag = true;
     private int statusCount=0;
-    private int intervalCount = 0;
+
     private ServiceMessageType previousMessageType = null;
     int bf,index;
 
-    public StatisticsCollector(Context ctx,ActivityManager am) {
-        appContext = ctx;
+    public StatisticsCollector(ActivityManager am) {
+        appContext = Utilities.appContext;
         activityManager = am;
         statLog = StatisticsLog.getInstance();
+        transmitList = TransmissionList.getInstance();
+
     }
     public void getAllStats() {
+        Long pollCycles = 0L;
             while (pollFlag) {
-                checkServiceStatus();
+                pollCycles++;
                 if (loadConfigFlag) {
                     loadConfig();
                 }
+                checkServiceStatus();
+                checkXmitData();
                 try {
-                    Thread.sleep(SLEEPTIME);
-                    intervalCount++;
                     if (runFlag) {
                         for (index = 0; index < waitIntervals.length; index++) {
                             if (RingrrConfigInfo.statPollIntervals[index] > 0) {  //pollInterval < 1 means not used
@@ -59,10 +65,18 @@ public class StatisticsCollector {
                             }
                         }
                     }
+                    Thread.sleep(SLEEPTIME);
+                    sleepCount++;
+                    if (sleepCount > MAX_SLEEP_COUNT) {
+                        statLog.writeLog();
+                        sleepCount = 0;
+                    }
                 }
                 catch (Exception e) {
+                   e.printStackTrace();
                     Utilities.handleCatch("SystemStatsService","poll",e);
                 }
+
             }
         }
 
@@ -82,9 +96,8 @@ public class StatisticsCollector {
     }
 
     private void checkServiceStatus() {
-        boolean addFlag = false;
-        boolean dumpFlag = false;
 
+    try {
         ServiceMessageType serviceMessageType = readServiceMessage();
         switch (serviceMessageType) {
             case STOP:
@@ -104,30 +117,18 @@ public class StatisticsCollector {
             default:    //used for ADMIN and STATUS types
                 break;
         }
-        if (previousMessageType == null) {
-            addFlag = true;
-        }
-        else {
-            if (serviceMessageType.equals(previousMessageType)) {
-                statusCount++;
-                if (statusCount > MAX_STATUS_COUNT) {
-                    statLog.addAdminMessage("Heartbeat");
-                    addFlag = true;
-                    statusCount = 0;
-                }
-            }
-        }
-        if (addFlag) {
-            statLog.addStatLine(StatisticType.STATUS, serviceMessageType.toString());
-        }
-        previousMessageType = serviceMessageType;
+    }
+    catch (Exception e) {
+        bf = 1;
+    }
     }
 
     private void getInfo(int statIndex) {
         int delta;
-        StatisticType st = configInfo.getStatTypeByIndex(statIndex);
+        StatisticType st;
         boolean initFlag;
         try {
+            st = configInfo.getStatTypeByIndex(statIndex);
             delta = RingrrConfigInfo.statDeltas[statIndex];
             if (st != null) {
                 switch (st) {
@@ -209,9 +210,13 @@ public class StatisticsCollector {
         catch (Exception e3) {
             Utilities.handleCatch("Ringrr","StatisticsCollector",e3);
         }
-
         return smType;
     }
 
+    private void checkXmitData() {
+        if (transmitList.filesPending()) {
+            transmitList.transmitData();
+        }
+    }
 }
 

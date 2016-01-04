@@ -4,12 +4,12 @@ import android.app.ActivityManager;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 public class StatisticsService extends IntentService {
     Context appContext;
     ActivityManager activityManager;
     StatisticsCollector statisticsCollector;
+    StatisticsLog statLog;
     int bf;
 
     public StatisticsService() {
@@ -19,8 +19,8 @@ public class StatisticsService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d("Ringrr:ADMIN","StatisticsService started");
         appContext = getApplicationContext();
+        Utilities.setContext(appContext);
         bf = 1;
     }
 
@@ -28,7 +28,16 @@ public class StatisticsService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         // This describes what will happen when service is triggered
         activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        statisticsCollector = new StatisticsCollector(appContext,activityManager);
+        statLog = StatisticsLog.getInstance();
+        statLog.addLogLine(LogMessageType.ADMIN, null, "Statistics Collection Service Started", true);
+        statisticsCollector = new StatisticsCollector(activityManager);
         statisticsCollector.getAllStats();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        statLog.addLogLine(LogMessageType.ADMIN, null, "Statistics Collection Service Stopped", true);
+        statLog.closeLog();
     }
 }

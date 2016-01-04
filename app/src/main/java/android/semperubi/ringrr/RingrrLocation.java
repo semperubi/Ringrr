@@ -82,10 +82,9 @@ public class RingrrLocation {
     public String getJSON() {
         try {
             JSONObject jsonObj = new JSONObject();
-            jsonObj.put("TYPE","LOCATION");
-            jsonObj.put("PROVIDER",provider);
             jsonObj.put("LATITUDE", latitude);
             jsonObj.put("LONGITUDE",longitude);
+            jsonObj.put("PROVIDER",provider);
             if (hasAltitude) {
                 jsonObj.put("ALTITUDE", altitude);
             }
@@ -101,6 +100,7 @@ public class RingrrLocation {
             jsonObj.put("SATELLITES",satellites);
             jsonObj.put("SATELLITES_IN_FIX",satellitesInFix);
             jsonObj.put("FIX_TIME",timetofix);
+
             return jsonObj.toString();
         }
         catch (Exception e) {

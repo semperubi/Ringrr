@@ -2,9 +2,6 @@ package android.semperubi.ringrr;
 
 import android.util.Log;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -19,17 +16,17 @@ import java.util.Date;
  * incremented for each new day
  */
 public class StatisticsLog {
-        final String myLogTag = "RingrrStat";
-        String appName;
-        String[] logLines;
-        String timeStamp;
+        public static Long logWriteTime = 0L;
+        final String myLogTag = "RINGRR:";
+        private String appName;
         private String jClass;
         private boolean isWriteable = false;
-        private int lineCount = 0;
+        private static int lineCount = 0;
         private int MAXLINES = 100;
+        private String currentLogFilePath;
+        private String lastLogFilePath="";
         private FileWriter logFile;
         private BufferedWriter writer;
-        private Long lastLogWriteTime = 0L;
         int bf;
 
     private static StatisticsLog ourInstance = new StatisticsLog();
@@ -41,35 +38,36 @@ public class StatisticsLog {
     private StatisticsLog() {
         appName = Utilities.getAppName();
         jClass = this.getClass().getName();
-        //logLines = new String[MAXLINES];
         bf = 1;
     }
 
-    public void addAdminMessage(String msg) {
-        JSONObject jsonObject;
-        String jStr = null;
-        try {
-            // Here we convert Java Object to JSON
-            jsonObject = new JSONObject();
-            jsonObject.put("MESSAGE",msg);
-            jStr = jsonObject.toString();
-            addStatLine(StatisticType.ADMIN,jStr);
-        }
-        catch(JSONException ex) {
-            Utilities.handleCatch("E",jClass+":toJSON",ex);
-        }
+    public void addAdminMessage(String message,boolean writeflag) {
+        addLogLine(LogMessageType.ADMIN,null,message,writeflag);
     }
 
-    public void addStatLine(StatisticType sType,String statInfo) {
-        Long timeSinceLastWrite;
-        lineCount++;
-        Log.d(myLogTag,sType.toString()+"|" +statInfo);
-        timeSinceLastWrite = (new Date()).getTime() - lastLogWriteTime;
-        if (lineCount > (MAXLINES-1)) {
-            writeLog();
-            lastLogWriteTime = (new Date()).getTime();
+    public void addLogLine(LogMessageType logType,StatisticType sType, String message,boolean writeFlag) {
+        String msgBody;
+        String logTag = myLogTag + logType.toString();
+        switch (logType) {
+            case STATISTIC:
+                msgBody = sType.toString() + ":" + message;
+                Log.i(logTag,msgBody);
+                break;
+            case ADMIN:
+            case DEBUG:
+                msgBody = message;
+                if (msgBody == null) {
+                    msgBody = "No Other Information Supplied";
+                }
+                Log.d(logTag,msgBody); //prevents exception in Log
+                break;
         }
-
+        lineCount++;
+        if (lineCount > (MAXLINES-1)) {
+            if (writeFlag) {
+                writeLog();
+            }
+        }
     }
 
     public void writeLog() {
@@ -77,11 +75,17 @@ public class StatisticsLog {
         int statLines=0;
         String line;
         boolean readFlag = true;
-        addAdminMessage("Dumping event log");
-        openLog();
+        if (lineCount < 1) {
+            addAdminMessage("HEARTBEAT",false);
+            return;
+        }
+        if (!isWriteable) {
+            openLog();
+        }
         if (isWriteable) {
             try {
-                Process process = Runtime.getRuntime().exec("logcat -d -v long");
+                addAdminMessage("WRITE LOG",false);
+                Process process = Runtime.getRuntime().exec("logcat -d -v time");  //sends log to standard out
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 while (readFlag) {
                     line = bufferedReader.readLine();
@@ -97,8 +101,10 @@ public class StatisticsLog {
                     }
                     else {
                         readFlag = false;
-                        closeLog();
-                        Runtime.getRuntime().exec("logcat -c");
+                        lineCount = 0;
+                        logWriteTime = (new Date()).getTime();
+                        Runtime.getRuntime().exec("logcat -c");  //clears log
+                        closeCurrentLog();
                         bf = 1;
                     }
                 }
@@ -109,15 +115,22 @@ public class StatisticsLog {
     }
 
     public void openLog() {
-        String fpath;
+        String fPath;
         try {
-            fpath = Utilities.getStatLogFilePath();
-            logFile = new FileWriter(fpath,true);
+            fPath = Utilities.getStatLogFilePath();
+            if (!fPath.equals(lastLogFilePath)) {  //this should be different with each new day
+                closeLog();
+                currentLogFilePath = fPath;
+                TransmissionList trList = TransmissionList.getInstance();
+                trList.transmitData();
+                lastLogFilePath = currentLogFilePath;
+            }
+            logFile = new FileWriter(currentLogFilePath,true);
             writer = new BufferedWriter(logFile);
             isWriteable = true;
         }
         catch (Exception e) {
-            Utilities.handleCatch("E",jClass+"openLog",e);
+            Utilities.handleCatch("E",jClass+":openLog",e);
         }
     }
 
@@ -126,15 +139,23 @@ public class StatisticsLog {
             if (lineCount > 0) {
                 writeLog();
             }
-            try {
-                writer.flush();
-                writer.close();
-                logFile.close();
-            } catch (Exception e) {
-                Utilities.handleCatch("E", jClass+"closeLog", e);
-            }
-            isWriteable = false;
+            closeCurrentLog();
+
         }
     }
+
+    private void closeCurrentLog() {
+        try {
+            writer.flush();
+            writer.close();
+            logFile.close();
+            writer = null;
+            logFile = null;
+        } catch (Exception e) {
+            Utilities.handleCatch("E", jClass+"closeCurrentLog", e);
+        }
+        isWriteable = false;
+    }
+
 
 }

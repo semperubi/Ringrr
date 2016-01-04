@@ -51,7 +51,7 @@ public class ServiceMessage {
     private boolean openFile() {
         boolean rval = true;
         try {
-            serviceFile = new FileWriter(Utilities.getStatLogFilePath(), true);
+            serviceFile = new FileWriter(Utilities.getServiceFilePath(), true);
             writer = new BufferedWriter(serviceFile);
         }
         catch (Exception e) {

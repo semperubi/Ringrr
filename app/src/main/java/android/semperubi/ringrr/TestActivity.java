@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import java.io.File;
+
 public class TestActivity extends Activity {
 
     Context appContext;
@@ -32,29 +34,41 @@ public class TestActivity extends Activity {
         activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         configInfo = RingrrConfigInfo.getInstance(appContext);
         statLogger = StatisticsLog.getInstance();
-        statLogger.addAdminMessage("Test Functions Started");
+        statLogger.addAdminMessage("Test Functions Started",true);
     }
 
 
     public void transmit(View v) {
-        statLogger.addAdminMessage("Transmit requested");
-        String fpath = Utilities.getStatLogFilePath();
-        Long logTime,startTime,endTime;
-        boolean dryRunFlag = true;
-        logTime = 1450638175920L;
-        startTime = 1450638075920L;
-        endTime = 1450638175920L;
-        DataPoster dataPoster = new DataPoster(RingrrConfigInfo.deviceId.toString(),logTime,startTime,endTime,dryRunFlag);
-        dataPoster.execute(fpath);
+       TransmissionList tmList = TransmissionList.getInstance();
+
+
+    }
+
+    private void sendStatFile(File statFile) {
+        int fp;
+        boolean result;
+        String oldName,newName,newPath;
+        try {
+            newPath = statFile.getPath();
+            oldName = statFile.getName();
+            newName = "Saved_" + oldName;
+            newPath = newPath.replaceFirst(oldName,newName);
+            File newFile = new File(newPath);
+            result = statFile.renameTo(newFile);
+            bf = 1;
+        }
+        catch (Exception e) {
+            bf = 1;
+        }
     }
 
     public void dumpLog(View v) {
-        statLogger.addAdminMessage("Write log requested");
+        statLogger.addAdminMessage("Write log requested",true);
         statLogger.writeLog();
     }
 
     public void getBatteryInfo(View v) {
-        statLogger.addAdminMessage("Battery info requested");
+        statLogger.addAdminMessage("Battery info requested",true);
         try {
             Intent intent = new Intent(this,ShowBatteryInfo.class);
             startActivityForResult(intent,StatisticType.BATTERY.getIntValue());
@@ -75,11 +89,11 @@ public class TestActivity extends Activity {
 
     }
     public void getAppInfo(View v) {
-        statLogger.addAdminMessage("App info requested");
+        statLogger.addAdminMessage("App info requested",true);
         ProcessInfo processInfo = new ProcessInfo(activityManager);
     }
 
     public void getNetworkInfo(View v) {
-        statLogger.addAdminMessage("Network info requested");
+        statLogger.addAdminMessage("Network info requested",true);
     }
 }

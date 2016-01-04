@@ -55,6 +55,9 @@ public class NetworkInfo extends StatisticObject {
                         case ConnectivityManager.TYPE_WIMAX:
                             netType = "Wimax";
                             break;
+                        case ConnectivityManager.TYPE_ETHERNET:
+                            netType = "Ethernet";
+                            break;
                         case ConnectivityManager.TYPE_BLUETOOTH:
                             netType = "Bluetooth";
                             BluetoothManager btMgr = (BluetoothManager)(mContext.getSystemService(Context.BLUETOOTH_SERVICE));

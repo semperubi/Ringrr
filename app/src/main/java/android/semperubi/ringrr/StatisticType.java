@@ -8,9 +8,8 @@ public enum StatisticType {
     LOCATION("LOCATION",1),
     BATTERY("BATTERY",2),
     MEMORY("MEMORY",3),
-    NETWORK("NETWORK",4),
-    ADMIN("ADMIN",5),
-    STATUS("STATUS",6);
+    NETWORK("NETWORK",4);
+
 
     private String stringValue;
     private int intValue;

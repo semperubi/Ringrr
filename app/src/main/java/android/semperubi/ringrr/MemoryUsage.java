@@ -69,8 +69,6 @@ public class MemoryUsage extends StatisticObject {
             jsonObject.put("THRESHOLD", thresholdMeg.toString());
             if (lowMemory) {
                 jsonObject.put("LOWMEMORY", "true");
-            } else {
-                jsonObject.put("LOWMEMORY", "false");
             }
         }
         catch (JSONException e) {

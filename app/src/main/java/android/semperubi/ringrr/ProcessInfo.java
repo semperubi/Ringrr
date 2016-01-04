@@ -12,7 +12,7 @@ import java.util.List;
 public class ProcessInfo {
     final int MAX_APPS = 100;
     int i,j;
-    String appName,startList,stopList,jsonString;
+    String appName;
     static int nRunning,nPrevious,nStarted,nStopped;
     static String[] runningApps;
     static String[] previousApps;
@@ -41,8 +41,7 @@ public class ProcessInfo {
     }
 
     public void update() {
-        int nApps;
-        boolean startFlag,stopFlag,changeFlag;
+        boolean startFlag,stopFlag;
         String pname;
         ActivityManager.RunningAppProcessInfo ri;
         try {
@@ -57,7 +56,6 @@ public class ProcessInfo {
         nStarted = 0;
         nStopped = 0;
         runningAppProcessInfo = activityManager.getRunningAppProcesses();
-        changeFlag = false;
         nRunning = runningAppProcessInfo.size();
 
         for (i=0; i < nRunning; i++) {
@@ -84,9 +82,12 @@ public class ProcessInfo {
 
         for (i=0; i < nPrevious; i++) {
             pname = previousApps[i];
+            if (pname.equals("system")) {
+                bf = 1;
+            }
             stopFlag = true;
             try {
-                for (j = 0; j < nPrevious; j++) {
+                for (j = 0; j < nRunning; j++) {
                     if (pname.equals(runningApps[j])) {
                         stopFlag = false;
                         break;
@@ -108,10 +109,16 @@ public class ProcessInfo {
 
     public void logJSON() {
         int i;
+        String runningList="";
         String startList="";
         String stopList="";
-        JSONObject jObj;
-        jsonString = null;
+        String jRunningList = null;
+        String jStartList = null;
+        String jStopList = null;
+        JSONObject jObjRunning,jObjStart,jObjStop;
+        for (i=0; i < nRunning; i++) {
+            runningList = runningList + runningApps[i] + ":";
+        }
         for (i=0; i < nStarted; i++) {
             startList = startList + startedApps[i] + ":";
         }
@@ -120,17 +127,21 @@ public class ProcessInfo {
         }
         try {
             // Here we convert Java Object to JSON
-            jObj = new JSONObject();
-            jObj.put("TYPE",StatisticType.APPS.toString());
+            //jObjRunning = new JSONObject();
+            //jObjRunning.put("RUNNING",runningList);
+            //jRunningList = jObjRunning.toString();
+           // statisticsLogger.addLogLine(LogMessageType.STATISTIC,StatisticType.APPS, jRunningList);
             if (nStarted > 0) {
-                jObj.put("APPS_STARTED", startList);
+                jObjStart = new JSONObject();
+                jObjStart.put("STARTED", startList);
+                jStartList = jObjStart.toString();
+                statisticsLogger.addLogLine(LogMessageType.STATISTIC, StatisticType.APPS, jStartList,true);
             }
             if (nStopped > 0) {
-                jObj.put("APPS_STOPPED", stopList);
-            }
-            jsonString = jObj.toString();
-            if (jsonString != null) {
-                statisticsLogger.addStatLine(StatisticType.APPS, jsonString);
+                jObjStop = new JSONObject();
+                jObjStop.put("STOPPED", stopList);
+                jStopList = jObjStop.toString();
+                statisticsLogger.addLogLine(LogMessageType.STATISTIC,StatisticType.APPS, jStopList,true);
             }
         }
         catch(JSONException ex) {

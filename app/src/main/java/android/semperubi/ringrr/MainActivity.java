@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
     final static int TEST = 2;
     TextView lbServices;
     EditText etPassword;
-    TableLayout tlServices;
+    TableLayout tlPassword,tlServices;
     InputMethodManager imm;
     EditText.OnEditorActionListener etListener;
     View.OnFocusChangeListener focusListener;
@@ -41,8 +41,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Utilities.setAppName("Ringrr");
         appContext = getApplicationContext();
+        Utilities.setContext(appContext);
         configInfo = RingrrConfigInfo.getInstance(appContext);
         baseContext = getBaseContext();
         activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
@@ -61,6 +61,7 @@ public class MainActivity extends Activity {
     }
 
     private void getScreenObjects() {
+
         lbServices = (TextView)findViewById(R.id.lbServices);
         tlServices = (TableLayout)findViewById(R.id.tlServiceButtons);
         etPassword = (EditText)findViewById(R.id.etPassword);
@@ -77,6 +78,7 @@ public class MainActivity extends Activity {
         lbServices.setVisibility(visibilityCode);
         tlServices.setVisibility(visibilityCode);
     }
+
     // Method to start the service
     public void startService(View view) {
         serviceMessage.startService();
@@ -133,6 +135,8 @@ public class MainActivity extends Activity {
         switch(tag) {
             case "password":
                 if (txt.equals(thePassword)) {
+                    TableLayout tlPassword = (TableLayout)findViewById(R.id.tlPassword);
+                    tlPassword.setVisibility(View.GONE);
                     setServiceObjects(true);
                 }
                 else {
@@ -212,6 +216,5 @@ public class MainActivity extends Activity {
             }
         };
     }
-
 
 }
