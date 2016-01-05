@@ -50,7 +50,6 @@ public class MemoryUsage extends StatisticObject {
 
     boolean checkDelta() {
         int memDiff;
-        Long memDiffLong;
         boolean rval = false;
         memDiff = 100*(int)((availableMegs - previousAvailableMegs)/availableMegs);
         //memDiff is percentage change

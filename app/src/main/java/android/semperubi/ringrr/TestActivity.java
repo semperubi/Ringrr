@@ -40,13 +40,9 @@ public class TestActivity extends Activity {
 
     public void transmit(View v) {
        TransmissionList tmList = TransmissionList.getInstance();
-
-
     }
 
     private void sendStatFile(File statFile) {
-        int fp;
-        boolean result;
         String oldName,newName,newPath;
         try {
             newPath = statFile.getPath();
@@ -54,7 +50,7 @@ public class TestActivity extends Activity {
             newName = "Saved_" + oldName;
             newPath = newPath.replaceFirst(oldName,newName);
             File newFile = new File(newPath);
-            result = statFile.renameTo(newFile);
+            statFile.renameTo(newFile);
             bf = 1;
         }
         catch (Exception e) {

@@ -34,7 +34,7 @@ public class ServiceMessage {
     public void reloadService() {sendMessage(ServiceMessageType.RELOAD);}
 
     private boolean sendMessage(ServiceMessageType sType) {
-        boolean rval = true;
+        boolean rval;
         try {
             rval = openFile();
             if (rval) {

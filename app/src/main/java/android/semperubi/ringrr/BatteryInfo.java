@@ -9,12 +9,12 @@ import android.os.BatteryManager;
  * Created by Herb on 12/19/2015.
  */
 public class BatteryInfo extends StatisticObject {
-    public Integer batteryLevel,previousBatteryLevel,scale;
     public Float batteryPercent;
     public String batteryState = null;
     public String batteryCable = null;
-    public Intent batteryStatus = null;
-    int bf;
+    Intent batteryStatus = null;
+    IntentFilter ifilter;
+    private Integer batteryLevel,previousBatteryLevel,scale;
 
     public BatteryInfo(Context ctx,int d) {
         super(ctx,StatisticType.BATTERY,d);
@@ -28,19 +28,16 @@ public class BatteryInfo extends StatisticObject {
     public boolean hasChanged() {return changeFlag;}
 
     void getDetails() {
-        IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        Intent batteryStatus = mContext.registerReceiver(null, ifilter);
         int status;
+        ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        batteryStatus = mContext.registerReceiver(null, ifilter);
 
         try {
-
             status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
         }
         catch (Exception e) {
-
             return;
         }
-
 
         switch(status) {
             case BatteryManager.BATTERY_STATUS_CHARGING:
@@ -78,7 +75,6 @@ public class BatteryInfo extends StatisticObject {
         batteryPercent = 100 * batteryLevel / (float)scale;
     }
 
-
     boolean checkDelta() {
         int levelDiff;
         boolean rval = false;
@@ -100,6 +96,5 @@ public class BatteryInfo extends StatisticObject {
             Utilities.handleCatch("E","BatteryInfo:setJSONdetails",e);
         }
     }
-
 
 }

@@ -32,7 +32,7 @@ public class NetworkDetails {
                 if (mNetInfo.isConnected()) {
                     isConnected = true;
                     mNetType = mNetInfo.getType();
-                    //Should be one of these: TYPE_MOBILE, TYPE_WIFI, TYPE_WIMAX, TYPE_ETHERNET, TYPE_BLUETOOTH
+                    // Should be one of these: TYPE_MOBILE, TYPE_WIFI, TYPE_WIMAX, TYPE_ETHERNET, TYPE_BLUETOOTH
                     switch (mNetType) {
                         case ConnectivityManager.TYPE_MOBILE:
                             netType = "Mobile";

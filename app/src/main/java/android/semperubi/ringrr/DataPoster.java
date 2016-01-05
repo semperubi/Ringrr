@@ -18,7 +18,6 @@ public class DataPoster extends AsyncTask<String,Integer,String> {
     private ArrayList<String> transmitList;
     private String dataFilePath;
     private String uriString;
-    private URL url;
     private HttpURLConnection httpConnection;
     private final int sleepTime = 10000;
     int bf;
@@ -53,15 +52,9 @@ public class DataPoster extends AsyncTask<String,Integer,String> {
 
     private void postCode() {
         int responseCode;
-        String responseText;
-        String inputLine;
-        StringBuffer response;
 
-        DataOutputStream dataOutputStream = null;
-        BufferedReader inputReader;
+        DataOutputStream dataOutputStream;
 
-        //statisticsData = getStatisticsData();
-        //add request header
         try {
             httpConnection.setRequestMethod("POST");
             httpConnection.setDoOutput(true);
@@ -122,10 +115,7 @@ public class DataPoster extends AsyncTask<String,Integer,String> {
             newName = "Saved_" + oldName;
             filePath = filePath.replaceFirst(oldName,newName);
             newFile = new File(filePath);
-            result = statFile.renameTo(newFile);
-            if (result == false) {
-                bf = 1;
-            }
+            statFile.renameTo(newFile);
         }
         catch (Exception e) {
             bf = 1;
@@ -153,46 +143,7 @@ public class DataPoster extends AsyncTask<String,Integer,String> {
                     stVal = "Authentication failure - the organization ID does not match Reporting Services account.";
                     break;
                 case 2: //activation failure
-                    stVal = "Activation key does not match Regatta Id or Organization ID.";
-                    break;
-                case 3: //publish window
-                    stVal = "Current date is not within the publishing window for this regatta.  If you need to extend the window, please contact support@regattamaster.com.";
-                    break;
-                case 4: //account locked
-                    stVal = "The regatta account is locked.  This could happen for a variety of reasons.   Please contact support@regattamaster.com.";
-                    break;
-                case 5: // regatta exists in RMRS under different org
-                    stVal = "Regatta registered under another organization.";
-                    break;
-                case 6: //regatta ID not found in control table
-                    stVal = "Regatta ID not found in RMRS.";
-                    break;
-                case 7: //error writing to RMRS database
-                    stVal = "Error writing to RMRS database.";
-                    break;
-                case 8: //transaction already completed
-                    stVal = "This transaction has already been completed.";
-                    break;
-                case 9: //timeout
-                    stVal = "The reporting service could not be reached.  Please make sure you have internet access and try again.  If you continue to see this error, please contact support@regattamaster.com.";
-                    break;
-                case 11: //rmrs version outdated
-                    stVal = "The version of Regatta Master you are using is outdated.  Please install the most current version in order to publish.";
-                    break;
-                case 12: //no records returned
-                    stVal = "No records found to match selected criteria";
-                    break;
-                case 13: //RM not registered
-                    stVal = "Regatta Master is not registered.";
-                    break;
-                case 14: //general failure
-                    stVal = "Operation failed.";
-                    break;
-                case 15: //invalid password
-                    stVal = "Invalid passcode.";
-                    break;
-                case 99: //mismatched RMRSID
-                    stVal = "The Reporting Service regatta ID does not match the replication ID//s in the current regatta data.  This must be corrected before publishing can continue.";
+                    stVal = "Activation key does not match Organization ID.";
                     break;
                 default:
                     stVal = "Unknown error code: " + rCode;
@@ -204,8 +155,6 @@ public class DataPoster extends AsyncTask<String,Integer,String> {
         }
         return stVal;
     }
-
-
 
 }
 

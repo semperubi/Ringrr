@@ -126,7 +126,6 @@ public class StatisticsCollector {
     private void getInfo(int statIndex) {
         int delta;
         StatisticType st;
-        boolean initFlag;
         try {
             st = configInfo.getStatTypeByIndex(statIndex);
             delta = RingrrConfigInfo.statDeltas[statIndex];

@@ -22,7 +22,7 @@ public class ProcessInfo {
     StatisticsLog statisticsLogger;
 
     List<ActivityManager.RunningAppProcessInfo> runningAppProcessInfo;
-    List<ActivityManager.RunningAppProcessInfo> previousAppProcessInfo=null;
+    //List<ActivityManager.RunningAppProcessInfo> previousAppProcessInfo=null;
 
     int bf;
 
@@ -112,10 +112,10 @@ public class ProcessInfo {
         String runningList="";
         String startList="";
         String stopList="";
-        String jRunningList = null;
-        String jStartList = null;
-        String jStopList = null;
-        JSONObject jObjRunning,jObjStart,jObjStop;
+        //String jRunningList = null;
+        String jStartList;
+        String jStopList;
+        JSONObject jObjStart,jObjStop;
         for (i=0; i < nRunning; i++) {
             runningList = runningList + runningApps[i] + ":";
         }

@@ -107,7 +107,6 @@ public class RingrrConfigInfo {
         boolean readHdr = false;
         boolean validType;
 
-        String fpath;
         String fline;
         String statisticType;
         String stName;
@@ -183,7 +182,6 @@ public class RingrrConfigInfo {
     public boolean writeConfigInfo() {
         int i,index;
         boolean rval = true;
-        String stname;
         String useFlag;
         String[] configLines = new String[nstats];
         Integer pollInterval,deltaValue;

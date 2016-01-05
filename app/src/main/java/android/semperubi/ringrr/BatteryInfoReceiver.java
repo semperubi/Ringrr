@@ -17,6 +17,6 @@ public class BatteryInfoReceiver extends BroadcastReceiver {
     public void onReceive(Context ctx, Intent i) {
         mContext = ctx;
         mIntent = i;
-        Log.d("RECEIVER", "Battery event received: " + i.getAction().toString());
+        Log.d("RECEIVER", "Battery event received: " + i.getAction());
     }
 }

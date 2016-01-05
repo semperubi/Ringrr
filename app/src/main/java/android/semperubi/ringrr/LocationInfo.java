@@ -36,7 +36,7 @@ import java.util.ArrayList;
             statType = StatisticType.LOCATION;
             mContext = ctx;
             sampleMilliseconds = 60000*sampleMinutes;
-            sampleMilliseconds = 1000; //for debugging
+            //sampleMilliseconds = 1000; //for debugging
             changeDistance = delta;
             statLogger = StatisticsLog.getInstance();
             locationManager = (LocationManager) (mContext.getSystemService(Context.LOCATION_SERVICE));
@@ -94,7 +94,7 @@ import java.util.ArrayList;
 
         @Override
         public void onGpsStatusChanged(int event) {
-            GpsStatus gpsStatus = null;
+            GpsStatus gpsStatus;
             try {
                 switch (event) {
                     case GpsStatus.GPS_EVENT_SATELLITE_STATUS:

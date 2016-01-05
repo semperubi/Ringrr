@@ -38,7 +38,7 @@ public class TransmissionList {
         refresh();
     }
 
-    public void transmitData() {        //cleanup of transmitList will be done in OnTaskCompleted in DataPoster
+    public void transmitData() {        //cleanup of transmitList will be done in doInBackground of DataPoster
         int nFiles,i;
         String[] fPath;
         nFiles = transmitList.size();
@@ -59,12 +59,9 @@ public class TransmissionList {
     private boolean transmitFile(String transmitFilePath) {
         boolean rval = false;
         Long logTime,startTime,endTime;
-        boolean dryRunFlag = true;
         Date statFileDate = Utilities.getStatLogFileDate(transmitFilePath);
         startTime = statFileDate.getTime();
         endTime = startTime + Utilities.MILLISECONDS_PER_DAY - Utilities.MILLISECONDS_PER_MINUTE;
-        // these values are for debugging purposes only
-        //TODO get appropriate values for each file being transmitted
         logTime = (new Date()).getTime();
 
         try {
