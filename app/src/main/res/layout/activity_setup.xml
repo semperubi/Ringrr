@@ -13,7 +13,7 @@
         android:paddingBottom="5dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/system_setup"
+        android:text="@string/SystemSetup"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/Black" />
@@ -33,7 +33,7 @@
                 android:id="@+id/lbInfoType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/infotype"
+                android:text="@string/Infotype"
                 android:textStyle="bold"
                 android:textColor="@color/Black"
                 android:textSize="15sp"/>
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="@string/use"
+                android:text="@string/Use"
                 android:textColor="@color/Black"
                 android:textStyle="bold"
                 android:textSize="15sp"/>
@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="5dp"
-                android:text="@string/poll"
+                android:text="@string/Poll"
                 android:textColor="@color/Black"
                 android:textStyle="bold"
                 android:textSize="15sp"/>
@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="5dp"
-                android:text="@string/time"
+                android:text="@string/Time"
                 android:textColor="@color/Black"
                 android:textStyle="bold"
                 android:textSize="15sp"/>
@@ -72,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
-                android:text="@string/accuracy"
+                android:text="@string/Delta"
                 android:textColor="@color/Black"
                 android:textStyle="bold"
                 android:textSize="15sp"/>
@@ -80,9 +80,9 @@
         </TableRow>
 
         <TableRow
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingRight="5dp">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="5dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -101,15 +101,16 @@
         <EditText
             android:id="@+id/etGPSInterval"
             android:tag="GPSInterval"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
+            android:layout_width="20dp"
             android:ems="10"
             android:imeOptions="actionDone"
             android:inputType="number"
             android:singleLine="true"
             android:maxWidth="20dp"
             android:textSize="15sp"
-            android:textColor="@color/Black"
-            android:layout_width="20dp"/>
+            android:textColor="@color/Black" />
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -121,7 +122,8 @@
             <EditText
                 android:id="@+id/etGPSDelta"
                 android:tag="GPSDelta"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="35dp"
                 android:paddingRight="10dp"
                 android:ems="10"
                 android:imeOptions="actionDone"
@@ -129,8 +131,7 @@
                 android:singleLine="true"
                 android:maxWidth="25dp"
                 android:textSize="15sp"
-                android:textColor="@color/Black"
-                android:layout_width="25dp"/>
+                android:textColor="@color/Black" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -163,7 +164,7 @@
             <EditText
                 android:id="@+id/etBatteryInterval"
                 android:tag="BatteryInterval"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:ems="10"
                 android:imeOptions="actionDone"
                 android:inputType="number"
@@ -183,7 +184,7 @@
             <EditText
                 android:id="@+id/etBatteryDelta"
                 android:tag="BatteryDelta"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:paddingRight="10dp"
                 android:ems="10"
                 android:imeOptions="actionDone"
@@ -212,7 +213,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/memory"
+                android:text="@string/Memory"
                 android:textSize="15sp"
                 android:textColor="@color/Black" />
 
@@ -226,7 +227,7 @@
             <EditText
                 android:id="@+id/etMemoryInterval"
                 android:tag="MemoryInterval"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:ems="10"
                 android:imeOptions="actionDone"
                 android:inputType="number"
@@ -246,7 +247,7 @@
             <EditText
                 android:id="@+id/etMemoryDelta"
                 android:tag="MemoryDelta"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:paddingRight="10dp"
                 android:ems="10"
                 android:imeOptions="actionDone"
@@ -274,7 +275,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Apps"
+                android:text="@string/Apps"
                 android:textSize="15sp"
                 android:textColor="@color/Black" />
 
@@ -288,7 +289,7 @@
             <EditText
                 android:id="@+id/etAppsInterval"
                 android:tag="AppsInterval"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:ems="10"
                 android:imeOptions="actionDone"
                 android:inputType="number"
@@ -306,6 +307,7 @@
                 android:textColor="@color/Black" />
 
         </TableRow>
+
         <TableRow
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -314,7 +316,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/network"
+                android:text="@string/Network"
                 android:textSize="15sp"
                 android:textColor="@color/Black" />
 
@@ -327,8 +329,8 @@
 
             <EditText
                 android:id="@+id/etNetworkInterval"
-                android:tag="NetworkInterval"
-                android:layout_height="wrap_content"
+                android:tag="HeartbeatInterval"
+                android:layout_height="35dp"
                 android:ems="10"
                 android:imeOptions="actionDone"
                 android:inputType="number"
@@ -346,6 +348,101 @@
                 android:textColor="@color/Black" />
 
         </TableRow>
+        
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="0dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Heartbeat"
+                android:textSize="15sp"
+                android:textColor="@color/Black" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:id="@+id/checkBoxHeartbeat" />
+
+            <EditText
+                android:id="@+id/etHeartbeatInterval"
+                android:tag="HeartbeatInterval"
+                android:layout_height="35dp"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:singleLine="true"
+                android:maxWidth="25dp"
+                android:textSize="15sp"
+                android:textColor="@color/Black"
+                android:layout_width="25dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/minutes"
+                android:textSize="15sp"
+                android:textColor="@color/Black" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/PollingInterval"
+                android:paddingRight="5dp"
+                android:paddingTop="10dp"
+                android:textSize="15sp"
+                android:textColor="@color/Black" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/etPollingInterval"
+                android:tag="PollingInterval"
+                android:layout_height="35dp"
+                android:layout_width="25dp"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:singleLine="true"
+                android:maxWidth="25dp"
+                android:textSize="12sp"
+                android:textColor="@color/Black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="@string/minutes"
+                android:textSize="15sp"
+                android:textColor="@color/Black" />
+
+        </TableRow>
+        
+    </TableLayout>
+    
+    <TableLayout
+        android:id="@+id/tlOtherParams"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:layout_below="@+id/tlInfoTypes">
+        
+
 
     </TableLayout>
 
@@ -360,20 +457,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
-    <Button
-        android:id="@+id/btCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/Red"
-        android:onClick="cancel"
-        android:text="@string/cancel"
-        android:textSize="12sp"
-        android:textStyle="bold" />
+            <Button
+                android:id="@+id/btCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/Red"
+                android:padding="10dp"
+                android:onClick="cancel"
+                android:text="@string/Cancel"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="?android:attr/buttonStyleSmall"
                 android:visibility="invisible"/>
 
             <Button
@@ -381,30 +479,45 @@
                 android:background="@color/Green"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/save"
-                android:textSize="12sp"
+                android:padding="10dp"
+                android:text="@string/Save"
+                android:textSize="15sp"
                 android:textStyle="bold"
-                android:onClick="saveSetupInfo"/>
+                android:onClick="saveSetupInfo" />
+
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="?android:attr/buttonStyleSmall"
                 android:visibility="invisible"/>
-    
-     <Button
-        android:id="@+id/btDone"
-        android:background="@color/Blue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="done"
-        android:text="@string/done" 
-        android:textSize="12sp"
-        android:textStyle="bold" />
+
+             <Button
+                android:id="@+id/btDone"
+                android:background="@color/Blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:onClick="done"
+                android:text="@string/Done"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
         </TableRow>
 
     </TableLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Advanced Settings"
+        android:textColor="@color/Black"
+        android:textStyle="bold"
+        android:id="@+id/button4"
+        android:onClick="advancedSetup"
+        android:layout_below="@+id/tlOtherParams"
+        android:layout_alignParentStart="true"/>
+
+   
 
 </RelativeLayout>
     

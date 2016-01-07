@@ -71,7 +71,7 @@ public class NetworkInfo extends StatisticObject {
         catch (Exception e) {
             //Utilities.exceptionHandler(ex, "MainActivity:CheckWiFiStatus");
             //evLogger.writeEntry(ex,"MainActivity:CheckWiFiStatus");
-            Utilities.handleCatch("Ringrr","NetworkInfo",e);
+            Utilities.handleCatch("NetworkInfo","getDetails",e);
         }
     }
 
@@ -90,7 +90,7 @@ public class NetworkInfo extends StatisticObject {
             }
         }
         catch (JSONException ex) {
-            Utilities.handleCatch("Ringrr","NetworkInfo",ex);
+            Utilities.handleCatch("NetworkInfo","setJSONdetails",ex);
         }
     }
 }

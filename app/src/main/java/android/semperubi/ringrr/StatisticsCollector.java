@@ -13,9 +13,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 
 public class StatisticsCollector {
-    final int MAX_STATUS_COUNT = 5;
-    final int MAX_SLEEP_COUNT = 5;
-    private final int SLEEPTIME = 10000; //milliseconds
     private int sleepCount = 0;
     private Context appContext;
     private ActivityManager activityManager;
@@ -26,6 +23,7 @@ public class StatisticsCollector {
     private NetworkInfo networkInfo;
     private ProcessInfo processInfo;
     private TransmissionList transmitList;
+    private long sleepTime;
     private int waitIntervals[];
     private static StatisticsLog statLog;
     private boolean loadConfigFlag = true;
@@ -42,14 +40,18 @@ public class StatisticsCollector {
         activityManager = am;
         statLog = StatisticsLog.getInstance();
         transmitList = TransmissionList.getInstance();
-
     }
+
     public void getAllStats() {
         Long pollCycles = 0L;
+        int maxSleepCount = 60;
             while (pollFlag) {
                 pollCycles++;
                 if (loadConfigFlag) {
                     loadConfig();
+                    maxSleepCount = 60/RingrrConfigInfo.pollTime;  // used to make sure log is written at least once per hour
+                    sleepTime = RingrrConfigInfo.pollTime*Utilities.MILLISECONDS_PER_MINUTE;
+                    bf = 1;
                 }
                 checkServiceStatus();
                 checkXmitData();
@@ -65,9 +67,9 @@ public class StatisticsCollector {
                             }
                         }
                     }
-                    Thread.sleep(SLEEPTIME);
+                    Thread.sleep(sleepTime);
                     sleepCount++;
-                    if (sleepCount > MAX_SLEEP_COUNT) {
+                    if (sleepCount > maxSleepCount) {
                         statLog.writeLog();
                         sleepCount = 0;
                     }
@@ -76,13 +78,11 @@ public class StatisticsCollector {
                    e.printStackTrace();
                     Utilities.handleCatch("SystemStatsService","poll",e);
                 }
-
             }
         }
 
     private void loadConfig() {
-        configInfo = null;
-        configInfo = RingrrConfigInfo.getInstance(appContext);
+        configInfo = RingrrConfigInfo.getInstance();
         waitIntervals = null;
         waitIntervals = new int[RingrrConfigInfo.statPollIntervals.length];
         try {
@@ -90,37 +90,37 @@ public class StatisticsCollector {
                 waitIntervals[i] = RingrrConfigInfo.statPollIntervals[i];
             }
         } catch (Exception e) {
-            bf = 1;
+            Utilities.handleCatch("StatisticsCollector","loadConfig",e);
         }
         loadConfigFlag = false;
     }
 
     private void checkServiceStatus() {
 
-    try {
-        ServiceMessageType serviceMessageType = readServiceMessage();
-        switch (serviceMessageType) {
-            case STOP:
-                pollFlag = false;
-                break;
-            case PAUSE:
-                runFlag = false;
-                statLog.closeLog();
-                break;
-            case CONTINUE:
-                statLog.openLog();
-                runFlag = true;
-                break;
-            case RELOAD:
-                loadConfigFlag = true;
-                break;
-            default:    //used for ADMIN and STATUS types
-                break;
+        try {
+            ServiceMessageType serviceMessageType = readServiceMessage();
+            switch (serviceMessageType) {
+                case STOP:
+                    pollFlag = false;
+                    break;
+                case PAUSE:
+                    runFlag = false;
+                    statLog.closeLog();
+                    break;
+                case CONTINUE:
+                    statLog.openLog();
+                    runFlag = true;
+                    break;
+                case RELOAD:
+                    loadConfigFlag = true;
+                    break;
+                default:    //used for ADMIN and STATUS types
+                    break;
+            }
         }
-    }
-    catch (Exception e) {
-        bf = 1;
-    }
+        catch (Exception e) {
+            Utilities.handleCatch("StatisticsCollector","checkServiceStatus",e);
+        }
     }
 
     private void getInfo(int statIndex) {
@@ -160,13 +160,16 @@ public class StatisticsCollector {
                             processInfo = new ProcessInfo(activityManager);
                         }
                         processInfo.update();
+                        break;
+                    case HEARTBEAT:
+                        statLog.addAdminMessage("HEARTBEAT",false);
                     default:
                         break;
                 }
             }
         }
         catch (Exception e) {
-            bf = 1;
+            Utilities.handleCatch("StatisticsCollector","getInfo",e);
         }
     }
 

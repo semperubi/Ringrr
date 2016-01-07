@@ -18,11 +18,11 @@ import java.util.Date;
 public class StatisticsLog {
         public static Long logWriteTime = 0L;
         final String myLogTag = "RINGRR:";
-        private String appName;
+        int MAXLINES = 100;
+        String appName;
         private String jClass;
         private boolean isWriteable = false;
         private static int lineCount = 0;
-        private int MAXLINES = 100;
         private String currentLogFilePath;
         private String lastLogFilePath="";
         private FileWriter logFile;
@@ -75,23 +75,19 @@ public class StatisticsLog {
         int statLines=0;
         String line;
         boolean readFlag = true;
-        if (lineCount < 1) {
-            addAdminMessage("HEARTBEAT",false);
-            return;
-        }
+        boolean debugFlag = true;
         if (!isWriteable) {
             openLog();
         }
         if (isWriteable) {
             try {
-                addAdminMessage("WRITE LOG",false);
                 Process process = Runtime.getRuntime().exec("logcat -d -v time");  //sends log to standard out
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 while (readFlag) {
                     line = bufferedReader.readLine();
                     if (line != null) {
                         logLines++;
-                        if (line.contains(myLogTag)) {
+                        if (line.contains(myLogTag) || debugFlag) {
                             writer.write(line + Utilities.newLine);
                             statLines++;
                         }
@@ -156,6 +152,4 @@ public class StatisticsLog {
         }
         isWriteable = false;
     }
-
-
 }

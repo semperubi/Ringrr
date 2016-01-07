@@ -27,20 +27,24 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name=".SetupActivity" />
-        <activity
-            android:name=".TestActivity"/>
-        <activity
-            android:name=".ShowBatteryInfo" />
-        <service
-            android:name=".StatisticsService" />
+        <activity android:name=".SetupActivity"/>
+        <activity android:name=".TestActivity"/>
+        <activity android:name=".ShowBatteryInfo"/>
+
+        <service android:name=".StatisticsService"/>
+
         <receiver android:name=".StatsReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <category android:name="android.intent.category.HOME" />
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+
+                <category android:name="android.intent.category.HOME"/>
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name=".AdvancedSetup"
+            android:label="@string/title_activity_advanced_setup">
+        </activity>
     </application>
 
 </manifest>

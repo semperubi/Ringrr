@@ -60,7 +60,6 @@ public class MemoryUsage extends StatisticObject {
         return rval;
     }
 
-
     void setJSONdetails() {
         try {
             jsonObject.put("AVAILABLE", availableMegs.toString());
@@ -71,7 +70,7 @@ public class MemoryUsage extends StatisticObject {
             }
         }
         catch (JSONException e) {
-            bf = 1;
+            Utilities.handleCatch("MemoryUsage","setJSONDetails",e);
         }
     }
 

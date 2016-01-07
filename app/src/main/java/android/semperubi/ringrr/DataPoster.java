@@ -15,13 +15,14 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class DataPoster extends AsyncTask<String,Integer,String> {
+    final String transmitMarker = "I/RINGRR";
+    RingrrConfigInfo configInfo;
+    @SuppressWarnings("CanBeFinal")
     private ArrayList<String> transmitList;
     private String dataFilePath;
-    private String uriString;
+    String uriString;
     private HttpURLConnection httpConnection;
-    private final int sleepTime = 10000;
     int bf;
-
 
     public DataPoster(ArrayList<String> tList) {
         transmitList = tList;
@@ -31,13 +32,17 @@ public class DataPoster extends AsyncTask<String,Integer,String> {
     protected String doInBackground(String... params) {
         dataFilePath = params[0];
         uriString = params[1];
+        configInfo = RingrrConfigInfo.getInstance();
         URL url;
         // taskStart = new Date();
         try {
+            Log.d("DataPoster","Transmit file:" + dataFilePath);
+            Log.d("DataPoster","URI String = " + uriString);
             url = new URL(uriString);
+
             httpConnection = (HttpURLConnection)url.openConnection();
             postCode();
-            Thread.sleep(sleepTime);
+            Thread.sleep(configInfo.threadSleepTime);
         }
         catch (InterruptedException e)
         {
@@ -46,7 +51,6 @@ public class DataPoster extends AsyncTask<String,Integer,String> {
         catch (Exception e) {
             Utilities.handleCatch("HttpSendTime", "constructor", e);
         }
-
         return "DONE";
     }
 
@@ -63,7 +67,7 @@ public class DataPoster extends AsyncTask<String,Integer,String> {
             //httpConnection.setRequestProperty("Content-Type", "text/plain");
         }
         catch (Exception e) {
-            bf = 1;
+            Utilities.handleCatch("DataPoster","postCode",e);
         }
 
         try {
@@ -80,7 +84,9 @@ public class DataPoster extends AsyncTask<String,Integer,String> {
                     readFlag = false;
                 }
                 else {
-                    dataOutputStream.writeBytes(logLine);
+                    if (logLine.contains(transmitMarker)) {
+                        dataOutputStream.writeBytes(logLine);
+                    }
                 }
             }
             dataOutputStream.flush();
@@ -93,19 +99,18 @@ public class DataPoster extends AsyncTask<String,Integer,String> {
                 }
             }
             if (responseCode == HttpURLConnection.HTTP_OK) {
-                Log.d("DataPoster", "Http Post:" + dataFilePath + " Succeeded");
+                Log.d("DataPoster", "Http Post Succeeded");
             }
             else {
-                Log.d("DataPoster","Http Post:" + dataFilePath + " Failed:" + HttpResponse(responseCode));
+                Log.d("DataPoster","Http Post Failed:" + HttpResponse(responseCode));
             }
         }
         catch (Exception e) {
-            bf = 1;
+            Utilities.handleCatch("DataPoster","postCode",e);
         }
     }
 
     private void renameFile(String fPath) {
-        boolean result;
         String oldName,newName,filePath;
         File statFile,newFile;
         try {
@@ -118,7 +123,7 @@ public class DataPoster extends AsyncTask<String,Integer,String> {
             statFile.renameTo(newFile);
         }
         catch (Exception e) {
-            bf = 1;
+            Utilities.handleCatch("DataPoster","renameFile",e);
         }
     }
 
@@ -140,7 +145,7 @@ public class DataPoster extends AsyncTask<String,Integer,String> {
                     stVal = "OK";
                     break;
                 case 1: //auth failure
-                    stVal = "Authentication failure - the organization ID does not match Reporting Services account.";
+                    stVal = "Authentication failure - invalid organization ID";
                     break;
                 case 2: //activation failure
                     stVal = "Activation key does not match Organization ID.";

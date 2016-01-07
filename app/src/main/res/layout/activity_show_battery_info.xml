@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+    android:background="@color/White"
     tools:context="android.semperubi.ringrr.ShowBatteryInfo">
 
     <TextView
@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
         android:paddingBottom="15dp"
-        android:text="Battery Information"
+        android:text="@string/BatteryInformation"
         android:textColor="@color/Black"
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -37,7 +37,7 @@
                 android:paddingRight="10dp"
                 android:textSize="20sp"
                 android:textColor="@color/Black"
-                android:text="Charging status" />
+                android:text="@string/ChargingStatus" />
 
             <TextView
                 android:id="@+id/tvBatteryStatus"
@@ -58,7 +58,7 @@
                 android:paddingRight="10dp"
                 android:textSize="20sp"
                 android:textColor="@color/Black"
-                android:text="Charge Level" />
+                android:text="@string/ChargeLevel" />
 
             <TextView
                 android:id="@+id/tvBatteryLevel"
@@ -80,7 +80,7 @@
                 android:paddingRight="10dp"
                 android:textSize="20sp"
                 android:textColor="@color/Black"
-                android:text="Charging method" />
+                android:text="@string/ChargeMethod" />
 
             <TextView
                 android:id="@+id/tvBatteryChargeType"
@@ -96,7 +96,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Refresh"
+        android:text="@string/Refresh"
         android:id="@+id/button2"
         android:onClick="refresh"
         android:layout_centerVertical="true"

@@ -15,7 +15,7 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 
 public class SetupActivity extends Activity {
-
+	final int ADVANCED = 2;
 	boolean savedFlag = false;
 	Context appContext;
 	InputMethodManager imm;
@@ -40,11 +40,36 @@ public class SetupActivity extends Activity {
 		imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE); 
 		intent = getIntent();
 		bundle = intent.getExtras();
-		configInfo = RingrrConfigInfo.getInstance(appContext);
+		configInfo = RingrrConfigInfo.getInstance();
 		getScreenObjects();
 		setupListeners();
 		setScreenObjects();
 	}
+
+	public void advancedSetup(View v) {
+		Intent intent = new Intent(this,AdvancedSetup.class);
+		startActivityForResult(intent,ADVANCED);
+	}
+
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// Check which request we're responding to
+		switch(requestCode) {
+			case ADVANCED:
+				if (resultCode == Activity.RESULT_OK) {
+					//showToast("Finished Setup");
+				}
+				else {
+					//showToast("Unable to complete Setup - Please restart app");
+					//this.finish();
+				}
+				break;
+			default:
+				break;
+		}
+	}
+
 	    public void done(View v) {
 
 			if (savedFlag) {
@@ -173,7 +198,7 @@ public class SetupActivity extends Activity {
 					txt = et.getText().toString();
 					entryOK = checkEntry(tag,txt);
 					if (!entryOK) {
-						//TODO
+						Utilities.showToast(appContext,"Invalid entry");
 					}
 				}
 			}

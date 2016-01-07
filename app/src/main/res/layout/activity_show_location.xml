@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/White"
     tools:context="android.semperubi.ringrr.ShowLocationActivity">
 
     <TextView
@@ -13,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
         android:paddingBottom="15dp"
-        android:text="Location Information"
+        android:text="@string/LocationInformation"
         android:textColor="@color/Black"
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -32,14 +33,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Provider:" />
+                android:textColor="@color/Black"
+                android:text="@string/GpsProvider" />
 
             <TextView
                 android:id="@+id/tvProvider"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="n/a" />
+                android:textColor="@color/Black"
+                android:text="@string/na" />
 
      </TableRow>
 
@@ -52,14 +55,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Latitude:" />
+                android:textColor="@color/Black"
+                android:text="@string/Latitude" />
 
             <TextView
                 android:id="@+id/tvLatitude"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="n/a" />
+                android:textColor="@color/Black"
+                android:text="@string/na" />
 
     </TableRow>
 
@@ -72,14 +77,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Longitude: " />
+                android:textColor="@color/Black"
+                android:text="@string/Longitude" />
 
             <TextView
                 android:id="@+id/tvLongitude"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="n/a" />
+                android:textColor="@color/Black"
+                android:text="@string/na" />
                 </TableRow>
 
         <TableRow
@@ -91,7 +98,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Altitude:" />
+                android:textColor="@color/Black"
+                android:text="@string/Altitude" />
 
 
             <TextView
@@ -99,7 +107,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="n/a" />
+                android:textColor="@color/Black"
+                android:text="@string/na" />
         </TableRow>
 
         <TableRow
@@ -111,14 +120,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Accuracy: " />
+                android:textColor="@color/Black"
+                android:text="@string/Accuracy" />
 
             <TextView
                 android:id="@+id/tvAccuracy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="n/a" />
+                android:textColor="@color/Black"
+                android:text="@string/na" />
         </TableRow>
 
         <TableRow
@@ -129,14 +140,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Speed:" />
+                android:textColor="@color/Black"
+                android:text="@string/Speed" />
 
             <TextView
                 android:id="@+id/tvSpeed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="n/a" />
+                android:textColor="@color/Black"
+                android:text="@string/na" />
         </TableRow>
 
         <TableRow
@@ -148,14 +161,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Distance: " />
+                android:textColor="@color/Black"
+                android:text="@string/Distance" />
 
             <TextView
                 android:id="@+id/tvDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="n/a" />
+                android:textColor="@color/Black"
+                android:text="@string/na" />
         </TableRow>
 
         <TableRow
@@ -167,14 +182,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Satellites: " />
+                android:textColor="@color/Black"
+                android:text="@string/Satellites" />
 
             <TextView
                 android:id="@+id/tvSatellites"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="n/a" />
+                android:textColor="@color/Black"
+                android:text="@string/na" />
         </TableRow>
 
         <TableRow
@@ -186,14 +203,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Fix Satellites: " />
+                android:textColor="@color/Black"
+                android:text="@string/FixSatellites" />
 
             <TextView
                 android:id="@+id/tvFixSatellites"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="n/a" />
+                android:textColor="@color/Black"
+                android:text="@string/na" />
         </TableRow>
 
         <TableRow
@@ -205,14 +224,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Fix Time: " />
+                android:textColor="@color/Black"
+                android:text="@string/FixTime" />
 
             <TextView
                 android:id="@+id/tvFixTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="n/a" />
+                android:textColor="@color/Black"
+                android:text="@string/na" />
         </TableRow>
 
     </TableLayout>
@@ -220,7 +241,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Refresh"
+        android:textColor="@color/Black"
+        android:text="@string/Refresh"
         android:id="@+id/button3"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/lbHeader"

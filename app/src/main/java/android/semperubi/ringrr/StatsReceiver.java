@@ -25,7 +25,7 @@ public class StatsReceiver extends BroadcastReceiver {
                 startService();
             }
         } catch (Exception e) {
-            Log.e("Ringrr:StatsReceiver", "Logging error");
+            Log.e("StatsReceiver", "onReceive",e);
         }
     }
 

@@ -22,7 +22,6 @@ public class Utilities {
 
     public final static int DEFAULT_POLL_INTERVAL = 5;
     public final static int DEFAULT_STAT_DELTA = 5;
-    public final static int SLEEP_MINUTES = 1;
     public final static int MILLISECONDS_PER_MINUTE = 60000;
     public final static int MILLISECONDS_PER_DAY = MILLISECONDS_PER_MINUTE * (24 * 60);
 

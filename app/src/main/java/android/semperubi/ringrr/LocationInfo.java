@@ -14,6 +14,7 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
+    @SuppressWarnings("CanBeFinal")
     public class LocationInfo implements LocationListener,GpsStatus.Listener {
 
         public ArrayList<RingrrLocation> locationHistory;
@@ -55,7 +56,7 @@ import java.util.ArrayList;
                 }
             }
             catch (SecurityException e) {
-                bf = 1;
+                Utilities.handleCatch("LocationInfo","constructor",e);
             }
         }
 
@@ -113,14 +114,14 @@ import java.util.ArrayList;
                     }
             }
             catch (Exception e) {
-                bf = 1;
+                Utilities.handleCatch("LocationInfo","onGpsStatusChanged",e);
             }
         }
 
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
             LogInfo("Status changed");
-            bf = 1;
+
             // needed to satisfy class requirements
         }
 

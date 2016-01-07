@@ -104,7 +104,7 @@ public class RingrrLocation {
             return jsonObj.toString();
         }
         catch (Exception e) {
-            bf = 1;
+            Utilities.handleCatch("RingrrLocation","getJSON",e);
         }
         return null;
     }

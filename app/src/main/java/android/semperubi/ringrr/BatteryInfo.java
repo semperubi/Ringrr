@@ -14,7 +14,8 @@ public class BatteryInfo extends StatisticObject {
     public String batteryCable = null;
     Intent batteryStatus = null;
     IntentFilter ifilter;
-    private Integer batteryLevel,previousBatteryLevel,scale;
+    @SuppressWarnings("CanBeFinal")
+    Integer batteryLevel,previousBatteryLevel,scale;
 
     public BatteryInfo(Context ctx,int d) {
         super(ctx,StatisticType.BATTERY,d);
@@ -36,6 +37,7 @@ public class BatteryInfo extends StatisticObject {
             status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
         }
         catch (Exception e) {
+            Utilities.handleCatch("D","BatteryInfo",e);
             return;
         }
 

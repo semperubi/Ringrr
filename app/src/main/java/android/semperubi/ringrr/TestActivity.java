@@ -32,11 +32,10 @@ public class TestActivity extends Activity {
         bundle = intent.getExtras();
         appContext = getApplicationContext();
         activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        configInfo = RingrrConfigInfo.getInstance(appContext);
+        configInfo = RingrrConfigInfo.getInstance();
         statLogger = StatisticsLog.getInstance();
         statLogger.addAdminMessage("Test Functions Started",true);
     }
-
 
     public void transmit(View v) {
        TransmissionList tmList = TransmissionList.getInstance();
@@ -54,7 +53,7 @@ public class TestActivity extends Activity {
             bf = 1;
         }
         catch (Exception e) {
-            bf = 1;
+            Utilities.handleCatch("TestActivity","sendStatFile",e);
         }
     }
 
@@ -73,8 +72,6 @@ public class TestActivity extends Activity {
         {
             Utilities.handleCatch("Ringrr", "getLocation: ", e);
         }
-
-        bf = 1;
     }
 
     public void getMemoryInfo(View v) {

@@ -69,7 +69,7 @@ public class ServiceMessage {
                 serviceFile.close();
             }
             catch (Exception e) {
-                bf = 1;
+                Utilities.handleCatch("ServiceMessage","closefile",e);
             }
         }
     }

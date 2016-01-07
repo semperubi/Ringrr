@@ -11,6 +11,7 @@ import java.util.Date;
  */
 public class TransmissionList {
     String thisDevice;
+    RingrrConfigInfo configInfo;
     ArrayList<String> transmitList;
     int bf;
 
@@ -33,7 +34,8 @@ public class TransmissionList {
 
 
     private TransmissionList() {
-        thisDevice = RingrrConfigInfo.deviceId.toString();
+        configInfo = RingrrConfigInfo.getInstance();
+        thisDevice = RingrrConfigInfo.getDeviceID();
         transmitList = new ArrayList<String>();
         refresh();
     }
@@ -65,6 +67,8 @@ public class TransmissionList {
         logTime = (new Date()).getTime();
 
         try {
+            String newUriString,uriString;
+            Uri newUri = configInfo.getHttpUri(logTime,startTime,endTime);
             //String urlParameters = "?log=gps&device=" + thisDevice + "&now=" + logTime.toString() + "&start=" + startTime.toString() + "&stop=" + endTime.toString() + "&dry-run=true";
             Uri uri = new Uri.Builder()
                     .scheme( "http" )
@@ -78,15 +82,22 @@ public class TransmissionList {
                     .appendQueryParameter("stop", endTime.toString())
                     .appendQueryParameter( "dry-run", "true" )
                     .build();
+            uriString = uri.toString();
+            newUriString = newUri.toString();
+            if (!newUriString.equals(uriString)) {
+                bf = 1;
+            }
            DataPoster dataPoster = new DataPoster(transmitList);
            dataPoster.execute(transmitFilePath,uri.toString());
            rval = true;
         }
         catch (Exception e) {
-            bf = 1;
+            Utilities.handleCatch("TransmissionList","transmitFile",e);
         }
         return rval;
     }
+
+
 
     private boolean wifiConnected() {
         boolean rval = false;
@@ -96,8 +107,6 @@ public class TransmissionList {
         }
         return rval;
     }
-
-
 
     public void refresh() {
         String fname,fpath,currentLogFilePath;
@@ -128,7 +137,7 @@ public class TransmissionList {
             }
         }
         catch (Exception e) {
-            bf = 1;
+            Utilities.handleCatch("TransmissionList","refresh",e);
         }
     }
 }

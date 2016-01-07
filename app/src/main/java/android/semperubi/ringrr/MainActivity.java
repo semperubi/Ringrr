@@ -25,7 +25,6 @@ public class MainActivity extends Activity {
     EditText.OnEditorActionListener etListener;
     View.OnFocusChangeListener focusListener;
 
-
     ActivityManager activityManager;
     Context appContext;
     Context baseContext;
@@ -43,7 +42,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         appContext = getApplicationContext();
         Utilities.setContext(appContext);
-        configInfo = RingrrConfigInfo.getInstance(appContext);
+        configInfo = RingrrConfigInfo.getInstance();
         baseContext = getBaseContext();
         activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -124,6 +123,23 @@ public class MainActivity extends Activity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        switch(requestCode) {
+            case SETUP:
+                if (resultCode == Activity.RESULT_OK) {
+                    //showToast("Finished Setup");
+                }
+                else {
+                    //showToast("Unable to complete Setup - Please restart app");
+                    //this.finish();
+                }
+                break;
+            default:
+                break;
+        }
+    }
     private boolean checkEntry(String tag,String txt) {
         int pollInterval;
         if (txt == null) {
@@ -204,7 +220,7 @@ public class MainActivity extends Activity {
                         txt = et.getText().toString();
                         entryOK = checkEntry(tag,txt);
                         if (!entryOK) {
-                            //TODO
+                            Utilities.showToast(appContext,"Invalid entry");
                         }
                     }
                 }
@@ -213,6 +229,7 @@ public class MainActivity extends Activity {
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                     //Utilities.handleCatch("SetupActivity","SetFocusListener",e);
                 }
+
             }
         };
     }

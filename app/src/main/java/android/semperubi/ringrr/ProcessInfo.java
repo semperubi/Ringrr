@@ -50,7 +50,7 @@ public class ProcessInfo {
             }
         }
         catch (Exception e) {
-            bf = 1;
+            Utilities.handleCatch("ProcessInfo","update1",e);
         }
         nPrevious = nRunning;
         nStarted = 0;
@@ -71,7 +71,7 @@ public class ProcessInfo {
                     }
                 }
                 catch (Exception e) {
-                    bf = 1;
+                    Utilities.handleCatch("ProcessInfo","update2",e);
                 }
             }
             if (startFlag) {
@@ -82,9 +82,6 @@ public class ProcessInfo {
 
         for (i=0; i < nPrevious; i++) {
             pname = previousApps[i];
-            if (pname.equals("system")) {
-                bf = 1;
-            }
             stopFlag = true;
             try {
                 for (j = 0; j < nRunning; j++) {
@@ -95,7 +92,7 @@ public class ProcessInfo {
                 }
             }
             catch (Exception e) {
-                bf = 1;
+                Utilities.handleCatch("ProcessInfo","update3",e);
             }
             if (stopFlag) {
                 stoppedApps[nStopped] = pname;

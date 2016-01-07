@@ -16,7 +16,7 @@
         android:textSize="24sp"
         android:textColor="@color/Black"
         android:textStyle="bold"
-        android:text="Ringrr Console" />
+        android:text="@string/RingrrConsole" />
 
     <TableLayout
         android:id="@+id/tlPassword"
@@ -33,7 +33,7 @@
                 android:id="@+id/lbPwd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/password"
+                android:text="@string/Password"
                 android:textSize="20sp"
                 android:textColor="@color/Black"
                 android:textStyle="bold" />
@@ -64,7 +64,7 @@
         android:textSize="20sp"
         android:textColor="@color/Black"
         android:textStyle="bold"
-        android:text="Service Functions" />
+        android:text="@string/ServiceFunctions" />
 
 
     <TableLayout
@@ -80,48 +80,53 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Start"
+                android:text="@string/Start"
                 android:textSize="12sp"
                 android:textColor="@color/Black"
                 android:textStyle="bold"
-                android:onClick="startService"/>
+                android:onClick="startService"
+                tools:ignore="ButtonStyle"/>
 
             <Button
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Stop"
+                android:text="@string/Stop"
                 android:textSize="12sp"
                 android:textColor="@color/Black"
                 android:textStyle="bold"
-                android:onClick="stopService" />
+                android:onClick="stopService"
+                tools:ignore="ButtonStyle"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pause"
+                android:text="@string/Pause"
                 android:textSize="12sp"
                 android:textColor="@color/Black"
                 android:textStyle="bold"
-                android:onClick="pauseService" />
+                android:onClick="pauseService"
+                tools:ignore="ButtonStyle"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Continue"
+                android:text="@string/Continue"
                 android:textSize="12sp"
                 android:textColor="@color/Black"
                 android:textStyle="bold"
-                android:onClick="continueService" />
+                android:onClick="continueService"
+                tools:ignore="ButtonStyle"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Reload"
+                android:text="@string/Reload"
                 android:textSize="12sp"
                 android:textColor="@color/Black"
                 android:textStyle="bold"
-                android:onClick="reloadService" />
+                android:onClick="reloadService"
+                tools:ignore="ButtonStyle"/>
 
             <Button
                 android:id="@+id/btSetup"
@@ -130,23 +135,12 @@
                 android:textSize="12sp"
                 android:textColor="@color/Black"
                 android:textStyle="bold"
-                android:text="Setup"
-                android:onClick="setup" />
+                android:text="@string/Setup"
+                android:onClick="setup"
+                tools:ignore="ButtonStyle"/>
 
         </TableRow>
     </TableLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test Functions"
-        android:textColor="@color/Black"
-        android:textStyle="bold"
-        android:id="@+id/button"
-        android:onClick="testFunctions"
-        android:layout_below="@+id/tlServiceButtons"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp"/>
 
 
 </RelativeLayout>

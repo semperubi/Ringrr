@@ -1,75 +1,73 @@
 <resources>
     <string name="app_name">Ringrr</string>
-    <string name="action_settings">Settings</string>
-    <string name="app_tag">Ringrr</string>
-    <string name="app_description">Gets information about GPS location, power, connectivity and memory</string>
-    <string name="msg_no_perm">Sorry! This app cannot run without permission!</string>
-    <string name="legal">Legal Notices</string>
-    <!-- Address format -->
-    <string name="address_output_string">%1$s %2$s %3$s</string>
-    <!-- Latitude, longitude format -->
-    <string name="latitude_longitude">%1$.8f, %2$.8f</string>
-    <string name="latlng">Lat/Long:</string>
-    <string name="address">Address:</string>
-    <!-- Messages -->
-    <string name="connected">Client connected</string>
-    <string name="connection_error_code_unknown">Unknown connection error code:  %1$d</string>
-    <string name="connection_failed">Connection failed</string>
-    <string name="disconnected">Client disconnected</string>
-    <string name="get_address">Get Address</string>
-    <string name="get_location">Get Location</string>
-    <string name="illegal_argument_exception">Illegal arguments: Latitude %1$.8f Longitude %2$.8f</string>
-    <string name="invalid_action">Invalid intent action %1$s</string>
-    <string name="invalid_integer_id">Invalid integer request ID: %1$s</string>
-    <string name="IO_Exception_getFromLocation">IO Exception in Geocoder.getFromLocation()</string>
-    <string name="location_requested">Periodic updates requested</string>
-    <string name="location_updated">Location updated</string>
-    <string name="location_update_error">Location update failed</string>
-    <string name="location_update_error_detail">Location update error. code %1$d message %2$s</string>
-    <string name="location_update_missing_update">Location update error. No incoming location.</string>
-    <string name="location_updates_stopped">Periodic updates stopped</string>
-    <string name="log_new_location">New location: %1$s</string>
-    <string name="no_address_found">No address found for location</string>
-    <string name="no_connection">No connection: Cannot request location</string>
-    <string name="no_geocoder_available">Cannot get address. No geocoder available.</string>
-    <string name="no_location_available">Location not available</string>
-    <string name="resolved">Error resolved. Please re-try operation.</string>
-    <string name="no_resolution">Google Play services: unable to resolve connection error.</string>
-    <string name="periodic_update_stop">Stopping periodic updates</string>
-    <string name="play_services_available">Google Play services is available</string>
-    <string name="request_location_updates_in_progress">Can\'t request location updates, previous request hasn\'t finished</string>
-    <string name="start_updates">Start Updates</string>
-    <string name="stop_updates">Stop Updates</string>
-    <string name="unknown">--Unknown--</string>
-    <string name="unknown_activity_request_code">Received an unknown activity request code %1$d in onActivityResult.</string>
-    <string name="title_activity_setup">Setup</string>
-    <string name="system_setup">System Setup</string>
-    <string name="password">Password:</string>
-    <string name="seconds">seconds</string>
-    <string name="save">Save</string>
-    <string name="done">Done</string>
-    <string name="cancel">Cancel</string>
-    <string name="infotype">Info Type</string>
-    <string name="gpslocation">GPS Location</string>
-    <string name="minutes">min</string>
-    <string name="use">Use</string>
-    <string name="power">Power</string>
-    <string name="connectivity">Connectivity</string>
-    <string name="memory">Memory</string>
-    <string name="update">Update</string>
-    <string name="frequency">Frequency</string>
+    <string name="RingrrConsole">Ringrr Console</string>
+    <string name="RingrrTestFunctions">Ringrr Test Functions</string>
+    <string name="TestFunctions">Test Functions</string>
+    <string name="StatisticsFunctions">Statistics Functions</string>
+    <string name="Setup">Setup</string>
+    <string name="OtherFunctions">Other Functions</string>
+    <string name="SystemSetup">System Setup</string>
+    <string name="AdvancedSystemSetup">Web Parameters</string>
+
+    <!-- GPS Location related items -->
+    <string name="Latitude">Latitude:</string>
+    <string name="Longitude">Longitude:</string>
+    <string name="GpsProvider">Provider:</string>
+    <string name="GPSInfo">GPS Info</string>
     <string name="location">Location</string>
+    <string name="LocationInformation">Location Information</string>
+
+
+    <string name="Altitude">Altitude:</string>
+    <string name="Accuracy">Accuracy:</string>
+    <string name="Speed">Speed:</string>
+    <string name="Distance">Distance:</string>
+    <string name="Satellites">Satellites</string>
+    <string name="FixSatellites">Fix Satellites:</string>
+    <string name="FixTime">Fix Time:</string>
+    <!-- Battery related items -->
     <string name="battery">Battery</string>
-    <string name="network">Network</string>
-    <string name="poll">Poll</string>
-    <string name="time">Time</string>
-    <string name="sensitivity">Sensitivity</string>
-    <string name="accuracy">Accuracy</string>
+    <string name="BatteryInformation">Battery Information</string>
+    <string name="ChargingStatus">Charging Status</string>
+    <string name="ChargeLevel">Charge Level</string>
+    <string name="ChargeMethod">Charge Method</string>
+    <!-- Network related items -->
+    <string name="Network">Network</string>
+    <!-- Memory related items -->
+    <string name="Memory">Memory</string>
+    <!-- Http related items -->
+    <string name="Basepath">Base Path</string>
+    <string name="Logtype">Log Type</string>
+    <string name="DryRunQuery">Dry Run?</string>
+
+    <string name="Heartbeat">Heartbeat</string>
+
+    <string name="Transmit">Transmit</string>
+    <string name="DumpLog">DumpLog</string>
+    <string name="ServiceFunctions">Service Functions</string>
+    <string name="Refresh">Refresh</string>
+
+    <string name="Password">Password:</string>
+    <string name="Save">Save</string>
+    <string name="Done">Done</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Infotype">Info Type</string>
+    <string name="minutes">min</string>
+    <string name="Use">Use</string>
+    <string name="Apps">Apps</string>
+
+    <string name="Poll">Poll</string>
+    <string name="PollingInterval">Poll Interval</string>
+    <string name="Time">Time</string>
+    <string name="Delta">Delta</string>
     <string name="meters">m.</string>
     <string name="percent">%</string>
+    <string name="na">n/a</string>
+    <string name="Start">Start</string>
+    <string name="Stop">Stop</string>
+    <string name="Pause">Pause</string>
+    <string name="Continue">Continue:</string>
+    <string name="Reload">Reload</string>
+    <string name="title_activity_advanced_setup">AdvancedSetup</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_show_location">ShowLocationActivity</string>
-    <string name="title_activity_show_battery_info">ShowBatteryInfo</string>
 </resources>

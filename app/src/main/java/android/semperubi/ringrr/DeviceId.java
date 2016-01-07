@@ -24,7 +24,6 @@ public class DeviceId {
         SERIAL_NUMBER   ("sn"),
         TELEPHONE_ID    ("ti"),
         WIFI_MAC        ("wm" ),
-
         OTHER           ("xx");
 
         final String mPrefix;

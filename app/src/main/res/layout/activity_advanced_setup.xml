@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    tools:context="android.semperubi.ringrr.AdvancedSetup">
+
+    <TextView
+        android:id="@+id/lbAdvancedSetup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/AdvancedSystemSetup"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/Black" />
+
+    <TableLayout
+        android:id="@+id/tlAdvancedParams"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:layout_below="@+id/lbAdvancedSetup" >
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/Basepath"
+            android:textColor="@color/Black"/>
+
+            <EditText
+                android:id="@+id/etHttpBasepath"
+                android:tag="HttpBasepath"
+                android:layout_width="200dp"
+                android:layout_height="35dp"
+                android:paddingRight="10dp"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:textSize="15sp"
+                android:textColor="@color/Black" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/Logtype"
+                android:textColor="@color/Black"/>
+
+            <EditText
+                android:id="@+id/etHttpLogType"
+                android:tag="HttpLogType"
+                android:layout_width="25dp"
+                android:layout_height="35dp"
+                android:paddingRight="10dp"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:textSize="15sp"
+                android:textColor="@color/Black" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/DryRunQuery"
+                android:textColor="@color/Black"/>
+
+            <CheckBox
+                android:id="@+id/checkBoxDryRun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="dryRunClicked"/>
+
+        </TableRow>
+
+   </TableLayout>
+
+    <TableLayout
+        android:id="@+id/tlAdvButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="5dp" >
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/btCancel2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/Red"
+                android:padding="10dp"
+                android:onClick="cancel"
+                android:text="@string/Cancel"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"/>
+
+            <Button
+                android:id="@+id/btSave2"
+                android:background="@color/Green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/Save"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:onClick="save" />
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"/>
+
+            <Button
+                android:id="@+id/btDone2"
+                android:background="@color/Blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:onClick="done"
+                android:text="@string/Done"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </TableRow>
+
+    </TableLayout>
+
+
+        android:layout_below="@+id/tlAdvancedParams"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="71dp"/>
+
+
+</RelativeLayout>

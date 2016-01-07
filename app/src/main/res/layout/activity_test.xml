@@ -16,7 +16,7 @@
         android:textSize="24sp"
         android:textColor="@color/Black"
         android:textStyle="bold"
-        android:text="Ringrr Test Functions" />
+        android:text="@string/RingrrTestFunctions" />
 
     <TextView
         android:id="@+id/lbStatistics"
@@ -27,7 +27,7 @@
         android:textSize="20sp"
         android:textColor="@color/Black"
         android:textStyle="bold"
-        android:text="Statistics Functions" />
+        android:text="@string/StatisticsFunctions" />
 
     <TableLayout
         android:id="@+id/tlStatButtons"
@@ -42,47 +42,52 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="GPS Info"
+                android:text="@string/GPSInfo"
                 android:textSize="12sp"
                 android:textColor="@color/Black"
                 android:textStyle="bold"
-                android:onClick="getLocationInfo" />
+                android:onClick="getLocationInfo"
+                tools:ignore="ButtonStyle"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Battery"
+                android:text="@string/battery"
                 android:textSize="12sp"
                 android:textColor="@color/Black"
                 android:textStyle="bold"
-                android:onClick="getBatteryInfo" />
+                android:onClick="getBatteryInfo"
+                tools:ignore="ButtonStyle"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Network"
+                android:text="@string/Network"
                 android:textSize="12sp"
                 android:textColor="@color/Black"
                 android:textStyle="bold"
-                android:onClick="getNetworkInfo"/>
+                android:onClick="getNetworkInfo"
+                tools:ignore="ButtonStyle"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Memory"
+                android:text="@string/Memory"
                 android:textSize="12sp"
                 android:textColor="@color/Black"
                 android:textStyle="bold"
-                android:onClick="getMemoryInfo" />
+                android:onClick="getMemoryInfo"
+                tools:ignore="ButtonStyle"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Apps"
+                android:text="@string/Apps"
                 android:textSize="12sp"
                 android:textColor="@color/Black"
                 android:textStyle="bold"
-                android:onClick="getAppInfo" />
+                android:onClick="getAppInfo"
+                tools:ignore="ButtonStyle"/>
 
         </TableRow>
 
@@ -97,7 +102,7 @@
         android:textSize="20sp"
         android:textColor="@color/Black"
         android:textStyle="bold"
-        android:text="Other Functions" />
+        android:text="@string/OtherFunctions" />
 
     <TableLayout
         android:id="@+id/tlOtherButtons"
@@ -110,23 +115,24 @@
             android:layout_height="wrap_content" >
 
             <Button
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Transmit"
+                android:text="@string/Transmit"
                 android:textSize="12sp"
                 android:textColor="@color/Black"
                 android:textStyle="bold"
-                android:onClick="transmit" />
+                android:onClick="transmit"
+                tools:ignore="ButtonStyle"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dump Log"
+                android:text="@string/DumpLog"
                 android:textSize="12sp"
                 android:textColor="@color/Black"
                 android:textStyle="bold"
-                android:onClick="dumpLog" />
+                android:onClick="dumpLog"
+                tools:ignore="ButtonStyle"/>
 
         </TableRow>
 
